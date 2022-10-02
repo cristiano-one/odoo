@@ -1,0 +1,42 @@
+{
+    "editor.autoIndent": "full",
+    "git.ignoreLimitWarning": true,     
+    "python.defaultInterpreterPath": "${workspaceRoot}/.venv/bin/python",   
+    // "python.pythonPath": "~/.asdf/installs/python/3.6.14",
+    "python.autoComplete.extraPaths": [
+        "${workspaceRoot}/core/addons",
+        "${workspaceRoot}/core",
+        "${workspaceRoot}/core/odoo/addons",
+        "${workspaceRoot}/custom",
+        "${workspaceRoot}/custom/muk_web_theme",
+        "${workspaceRoot}/oca-odoo-brasil",
+        "${workspaceRoot}/oca-odoo-brasil/timesheet"
+    ],
+    "python.linting.enabled": true,
+    "python.linting.pylintArgs": [
+        "--load-plugins",
+        "pylint_odoo"
+    ],
+    "python.formatting.provider": "autopep8",
+    "python.linting.pycodestyleEnabled": true,
+    "files.autoSave": "off",
+    "files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/CVS": true,
+        "**/.DS_Store": true,
+        "**/*.pyc": true
+    },
+    "workbench.colorTheme": "Default Dark+",
+    "python.analysis.extraPaths": [
+        "${workspaceRoot}/core/addons",
+        "${workspaceRoot}/core",
+        "${workspaceRoot}/core/odoo/addons",
+        "${workspaceRoot}/custom",
+        "${workspaceRoot}/custom/muk_web_theme",
+        "${workspaceRoot}/oca-odoo-brasil",
+        "${workspaceRoot}/oca-odoo-brasil/timesheet"
+       
+    ]
+}

@@ -1,0 +1,28 @@
+{
+    // Use o IntelliSense para aprender sobre possíveis atributos.
+    // Passe o mouse para ver as descrições dos atributos existentes.
+    // Para obter mais informações, visite: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Odoo-bin",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/core/odoo-bin",
+            "args": [
+                "--config=${workspaceFolder}/odoo.conf",
+                "--log-level=debug",
+                // "-d",
+                // "thecoffee-11-test-27-09-21",
+                // "thecoffee-18-08-21",
+                //  "-d","thecoffe-11-10-21-odoo11",
+                // "-d","thecoffee-11-01-11-21",
+                // "-d","thecoffee-without-theme",
+                //  "milcolor-junho-cp01",     
+                // "-u","payment_juno",
+                
+            ],
+            "console": "integratedTerminal"
+        }
+    ]
+}
