@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="clickup_data_import_view_wizard" model="ir.ui.view">
+        <field name="name">import.data.wizard.view</field>
+        <field name="model">import.data.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <group name="type_agroup_import" string="Option to import"> 
+                    <field name="list_id" string="Added list code" />
+                    <field name="archived" string="Archived" />
+                </group>
+                <footer>
+                    <button name="clickup_date" string="Import" type="object" class="oe_highlight" />
+                    <button special="cancel" string="_Cancel" class="oe_highlight" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="clickup_import_action_wizard" model="ir.actions.act_window">
+        <field name="name">Clickup Import</field>
+        <field name="res_model">import.data.wizard</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="view_id" ref="clickup_data_import_view_wizard"/>
+    </record>
+
+</odoo>

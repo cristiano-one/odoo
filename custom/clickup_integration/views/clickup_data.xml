@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="clickup_data_tree" model="ir.ui.view">
+        <field name="name">clickup.data.tree</field>
+        <field name="model">clickup.data</field>
+        <field name="arch" type="xml">
+            <tree string="Tasks Imported" create="false" delete="false">
+                <field name="task_id"/>
+                <field name="task_name"/>                
+                <field name="task_description"/>
+                <field name="task_name_creator"/>
+                <field name="task_assignees"/>
+                <field name="task_date_created"/>
+                <field name="task_date_update"/>
+                <field name="task_date_closed"/>
+                <field name="task_start_date"/>
+                <field name="task_status"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="clickup_information_action" model="ir.actions.act_window">
+        <field name="name">Clickup Records</field>
+        <field name="res_model">clickup.data</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="clickup_data_tree"/>
+        <!-- <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Click to choose your option
+            </p>
+            <p>
+                This view allows communication with Clickup. To obtain information about tasks and task lists.
+            </p>
+        </field> -->
+    </record>
+
+</odoo>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    
+      <menuitem
+        id="root_menu_clickup"
+        name="Clickup Integration"
+        sequence="6"
+        web_icon="clickup_integration,static/description/icon.png"
+        groups="base.group_user"
+    />
+
+    <menuitem
+        id="main_clickup_data"
+        name="Tasks"
+        parent="root_menu_clickup"
+        sequence="0"
+    />
+
+    <menuitem id="menu_clickup_data"
+        action="clickup_information_action"
+        parent="main_clickup_data"
+        name="Tasks Information"
+        sequence="1"
+    />
+
+    <menuitem
+        id="main_clickup_import"
+        action="clickup_import_action_wizard"
+        name="Import"
+        parent="root_menu_clickup"
+        sequence="1"
+    />
+
+    <menuitem
+        id="main_clickup_config"
+        name="Settings"
+        parent="root_menu_clickup"
+        sequence="2"
+    />
+
+    <menuitem id="menu_clickup_config"
+        action="clickup_config_action"
+        parent="main_clickup_config"
+        name="Configuration"
+        sequence="0"
+    />
+
+</odoo>
+   
+   
+   
