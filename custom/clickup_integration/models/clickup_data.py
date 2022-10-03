@@ -2,7 +2,7 @@ import json
 import string
 from psycopg2 import IntegrityError
 import requests
-from odoo import _, models, fields
+from odoo import api, fields, models, _
 from datetime import datetime
 from odoo.exceptions import UserError
 
@@ -33,7 +33,7 @@ class ClickupData(models.Model):
             if type == 'dt':
                 convert = cv.strftime('%d-%m-%Y')
             else:
-                convert = cv.strftime('%H:%M:%S')
+                convert = cv.strftime('%H:%M')
             return convert
 
     def import_data(self, res):
@@ -71,8 +71,9 @@ class ClickupData(models.Model):
             task_exist = self.search(
                 [('task_id', '=', task.get('id'))])
 
-            if not task_exist:
+            if not task_exist and task.get('id'):
                 self.create(data)
+                self.create_timesheet(data)
             else:
                 self.update_data(data)
 
@@ -92,3 +93,29 @@ class ClickupData(models.Model):
                 task_time_estimate = '{data['task_time_estimate']}',
                 task_status = '{data['task_status']}'
                 WHERE task_id = '{data.get('id')}' """)
+
+    def create_timesheet(self, data):
+        vals = self._get_data_imported_fields(data)
+        self.env['account.analytic.line'].create(vals)
+
+    @api.model
+    def _get_data_imported_fields(self, data):
+        """ Set values """
+
+        if data['task_time_estimate']:
+            task_time = data['task_time_estimate'].replace(':', '')
+            task_time_estimate = float(task_time) / 100
+        else:
+            task_time_estimate = None
+        return {
+            'name': data['task_name'],
+            'date': data['task_date_created'],  # '2022-10-01',
+            'unit_amount': task_time_estimate,
+            # 'user_id': 2,
+            # 'employee_id': False,
+            # 'department_id': False,
+            # 'company_id': 1,
+            # 'task_id': False,
+            'project_id': 4,
+            # 'sheet_id': False
+        }

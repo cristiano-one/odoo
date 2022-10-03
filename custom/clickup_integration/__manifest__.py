@@ -9,8 +9,8 @@
     "website": "",
     'author': 'Cristiano Rodrigues',
     "license": "AGPL-3",
-    "depends": [       
-        ],
+    "depends": ['hr_timesheet_sheet'
+    ],
     "data": [
         "security/clickup_data.xml",
         "wizards/import_data_wizard.xml",

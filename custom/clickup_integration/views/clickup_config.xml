@@ -6,22 +6,22 @@
             <field name="model">clickup.config</field>
             <field name="arch" type="xml">
                 <form>
-                    <group string="Authorization">
-                        <field name="token"/>
-                    </group>
                     <group string="When necessary">
-                        <field name="client_id"/>
-                        <field name="client_secret"/>
+                        <field name="clickup_client_id"/>
+                        <field name="clickup_client_secret"/>
+                    </group>
+                    <group string="Authorization">
+                        <field name="clickup_token" password="True"/>
                     </group>
                     <field name="clickup_authenticated" invisible="1" />
-                    <button name="clickup_validate" class="oe_stat_button o_field_widget" type="object" icon="fa-check" attrs="{'invisible': [('clickup_authenticated', '=', False)]}">
-                        <span class="text-success">Successfully Authenticated</span>
-                    </button>
-                    <button name="clickup_validate" class="oe_stat_button o_field_widget" type="object" icon="fa-times" attrs="{'invisible': [('clickup_authenticated', '=', True)]}">
-                        <span class="text-danger">Click for authentication</span>
-                    </button>
-
-
+                    <footer>
+                        <button name="clickup_validate" class="oe_stat_button o_field_widget" type="object" icon="fa-check" attrs="{'invisible': [('clickup_authenticated', '=', False)]}">
+                            <span class="text-success">Successfully Authenticated</span>
+                        </button>
+                        <button name="clickup_validate" class="oe_stat_button o_field_widget" type="object" icon="fa-times" attrs="{'invisible': [('clickup_authenticated', '=', True)]}">
+                            <span class="text-danger">Click for authentication</span>
+                        </button>
+                    </footer>
                 </form>
             </field>
         </record>
@@ -30,12 +30,7 @@
             <field name="name">Clickup Config</field>
             <field name="res_model">clickup.config</field>
             <field name="view_mode">form</field>
-            <!-- <field name="domain">[('id', '=', uid)]</field> -->
-            <!-- <field name="context">
-            {"form_view_initial_mode": "edit",
-                "default_token": True,
-                "default_type_operation": "create"}
-            </field> -->
+            <field name="target">new</field>
             <field name="help" type="html">
                 <p class="oe_view_nocontent_create">
         Click to start preparing a new revenue accrual.

@@ -6,8 +6,9 @@ from odoo.exceptions import UserError
 from odoo import _, api, fields, models
 
 
-class MessageBox(models.TransientModel):
+class ImportDataWizard(models.TransientModel):
     _name = "import.data.wizard"
+    _inherit = "res.config.settings"
     _description = "Import data Clickup"
 
     list_id = fields.Char("List ID", required=True)
@@ -23,7 +24,7 @@ class MessageBox(models.TransientModel):
 
     def clickup_date(self):
         config_id = self.env['clickup.config'].search(
-            [('clickup_authenticated', '=', True)])
+            [('clickup_authenticated', '=', True)], limit=1)
         type_data = "list/"
         arq = 'false' if not self.archived else 'true'
         params = f"/task?archived={arq}&include_closed=true"
@@ -31,7 +32,7 @@ class MessageBox(models.TransientModel):
         url = f"{http}{type_data}{self.list_id}{params}"
 
         header = {
-            "Authorization": config_id.token,
+            "Authorization": config_id.clickup_token,
             'Content-Type': 'multipart/form-data'
         }
         try:
@@ -51,3 +52,14 @@ class MessageBox(models.TransientModel):
     @staticmethod
     def url():
         return "https://api.clickup.com/api/v2/"
+
+    @api.model
+    def get_values(self):
+        res = super(ImportDataWizard, self).get_values()
+        import_data_id = self.search(
+            [('list_id', '!=', '')], limit=1)
+        res.update(
+            list_id=import_data_id.list_id,
+            archived=import_data_id.archived,
+        )
+        return res

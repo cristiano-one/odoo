@@ -1,19 +1,20 @@
 
 import requests
-from odoo import models, fields
+from odoo import api, models, fields
 
 
-class ClickupConfig(models.Model):
+class ClickupConfig(models.TransientModel):
     _name = "clickup.config"
+    _inherit = "res.config.settings"
     _description = "Configuraton initial"
 
-    token = fields.Char(string='Token', required=True)
-    client_id = fields.Char(string='Client Id')
-    client_secret = fields.Char(string='Client Secret')
+    clickup_client_id = fields.Char(string='Client Id')
+    clickup_client_secret = fields.Char(string='Client Secret')
+    clickup_token = fields.Char(string='Token', required=True)
     clickup_authenticated = fields.Boolean(default=False)
 
     def clickup_validate(self):
-        token = self.token 
+        token = self.clickup_token
         type_data = "list/"  # list ou task
         id_find = "187103630"  # "187103630" # id pode ser um list_id ou task_id
         params = "/task?archived=false"
@@ -31,3 +32,14 @@ class ClickupConfig(models.Model):
             self.clickup_authenticated = True
         else:
             self.clickup_authenticated = False
+
+    @api.model
+    def get_values(self):
+        res = super(ClickupConfig, self).get_values()
+        clickup_config_id = self.search(
+            [('clickup_authenticated', '=', True)], limit=1)
+        res.update(
+            clickup_token=clickup_config_id.clickup_token,
+            clickup_authenticated=clickup_config_id.clickup_authenticated,
+        )
+        return res
