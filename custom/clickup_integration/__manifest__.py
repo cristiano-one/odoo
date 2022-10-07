@@ -10,7 +10,7 @@
     'author': 'Cristiano Rodrigues',
     "license": "AGPL-3",
     "depends": ['hr_timesheet_sheet'
-    ],
+                ],
     "data": [
         "security/clickup_data.xml",
         "wizards/import_data_wizard.xml",
@@ -18,6 +18,6 @@
         "views/clickup_data.xml",
         "views/clickup_menu.xml",
     ],
-    'installable': True,
+    'application': True,
 
 }

@@ -10,8 +10,7 @@
                     <field name="archived" string="Archived" />
                 </group>
                 <footer>
-                    <button name="clickup_date" string="Import" type="object" class="oe_highlight" />
-                    <button name="criar_task" string="Criar Task" type="object" class="oe_highlight" />
+                    <button name="clickup_date" string="Import/Update" type="object" class="oe_highlight" />
                     <button special="cancel" string="_Cancel" class="oe_highlight" />
                 </footer>
             </form>

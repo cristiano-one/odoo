@@ -30,7 +30,7 @@
             <field name="name">Clickup Config</field>
             <field name="res_model">clickup.config</field>
             <field name="view_mode">form</field>
-            <field name="target">new</field>
+            <field name="target">inline</field>
             <field name="help" type="html">
                 <p class="oe_view_nocontent_create">
         Click to start preparing a new revenue accrual.

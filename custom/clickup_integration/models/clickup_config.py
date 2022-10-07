@@ -8,12 +8,25 @@ class ClickupConfig(models.TransientModel):
     _inherit = "res.config.settings"
     _description = "Configuraton initial"
 
-    clickup_client_id = fields.Char(string='Client Id')
-    clickup_client_secret = fields.Char(string='Client Secret')
-    clickup_token = fields.Char(string='Token', required=True)
-    clickup_authenticated = fields.Boolean(default=False)
+    clickup_client_id = fields.Char(
+        string='Client Id',
+        config_parameter='clickup_client_id'
+    )
+    clickup_client_secret = fields.Char(
+        string='Client Secret',
+        config_parameter='clickup_client_secret'
+    )
+    clickup_token = fields.Char(
+        string='Token',
+        required=True,
+        config_parameter='clickup_token')
+    clickup_authenticated = fields.Boolean(
+        default=False,
+        config_parameter='clickup_authenticated'
+    )
 
     def clickup_validate(self):
+        # TODO Lembrar do fazer update com mais opções
         token = self.clickup_token
         type_data = "list/"  # list ou task
         id_find = "187103630"  # "187103630" # id pode ser um list_id ou task_id

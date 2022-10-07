@@ -5,11 +5,6 @@ class AccountAnalyticLine(models.Model):
     _inherit = "account.analytic.line"
     _description = "Create task"
 
+    clickup_data_id = fields.Many2many('clickup.data')
 
-@api.model
-def create(self, values):
-    if not self.env.context.get('sheet_create') and 'sheet_id' in values:
-        del values['sheet_id']
-    res = super(AccountAnalyticLine, self).create(values)
-    res._compute_sheet()
-    return res
+    clickup_data_task_id = fields.Char()

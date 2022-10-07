@@ -47,7 +47,6 @@ class ImportDataWizard(models.TransientModel):
             raise UserWarning(_('Import failed'))
         else:
             self.env["clickup.data"].import_data(res)
-            # UserWarning(_('Successfully imported'))
 
     @staticmethod
     def url():
